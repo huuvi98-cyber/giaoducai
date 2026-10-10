@@ -1,0 +1,6 @@
+{
+  "name": "Infographic Giáo Dục AI Phổ Thông",
+  "description": "Infographic tương tác 8 chuyên đề về Khung nội dung giáo dục Trí tuệ Nhân tạo cho học sinh phổ thông theo Quyết định 2422/QĐ-BGDĐT của Bộ GD&ĐT.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

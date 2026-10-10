@@ -1,0 +1,110 @@
+import React from 'react';
+import { GENERAL_INFO } from '../../data/infographicData';
+import {
+  GraduationCap,
+  Layers,
+  Clock,
+  Award,
+  CheckCircle2,
+} from 'lucide-react';
+
+interface RowTheme {
+  bg: string;
+  borderColor: string;
+  titleColor: string;
+}
+
+const SECTION_THEMES: Record<string, RowTheme> = {
+  scope: {
+    bg: 'bg-blue-50/70 hover:bg-blue-100/60',
+    borderColor: 'border-blue-100',
+    titleColor: 'text-blue-950',
+  },
+  structure: {
+    bg: 'bg-emerald-50/70 hover:bg-emerald-100/60',
+    borderColor: 'border-emerald-100',
+    titleColor: 'text-emerald-950',
+  },
+  duration: {
+    bg: 'bg-amber-50/70 hover:bg-amber-100/60',
+    borderColor: 'border-amber-100',
+    titleColor: 'text-amber-950',
+  },
+  qualities: {
+    bg: 'bg-violet-50/70 hover:bg-violet-100/60',
+    borderColor: 'border-violet-100',
+    titleColor: 'text-violet-950',
+  },
+  assessment: {
+    bg: 'bg-rose-50/70 hover:bg-rose-100/60',
+    borderColor: 'border-rose-100',
+    titleColor: 'text-rose-950',
+  },
+};
+
+export const Tab1GeneralInfo: React.FC = () => {
+  const iconMap: Record<string, React.ReactNode> = {
+    scope: <GraduationCap className="w-6 h-6 text-blue-600" />,
+    structure: <Layers className="w-6 h-6 text-blue-600" />,
+    duration: <Clock className="w-6 h-6 text-blue-600" />,
+    qualities: <Award className="w-6 h-6 text-blue-600" />,
+    assessment: <CheckCircle2 className="w-6 h-6 text-blue-600" />,
+  };
+
+  return (
+    <div className="space-y-8 animate-fadeIn">
+      {/* Header section with context */}
+      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
+        <div className="pb-4 border-b border-slate-100">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Thông tin chung
+          </h2>
+        </div>
+
+        {/* Official Data Table with larger typography & gentle soft pastel section differentiation */}
+        <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 shadow-xs">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-slate-100/90 border-b border-slate-200 text-slate-800">
+                <th className="py-4 px-6 font-bold text-base sm:text-lg md:text-xl w-1/3 sm:w-2/5">
+                  Thông tin
+                </th>
+                <th className="py-4 px-6 font-bold text-base sm:text-lg md:text-xl">
+                  Nội dung
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {GENERAL_INFO.map((item) => {
+                const theme = SECTION_THEMES[item.key] || SECTION_THEMES.scope;
+                return (
+                  <tr
+                    key={item.key}
+                    className={`${theme.bg} ${theme.borderColor} border-b transition-colors`}
+                  >
+                    <td className="py-5 px-6 align-middle">
+                      <div className="flex items-center gap-3.5">
+                        <span className="p-2.5 rounded-xl bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
+                          {iconMap[item.key]}
+                        </span>
+                        <span className={`text-base sm:text-lg md:text-xl font-bold ${theme.titleColor}`}>
+                          {item.title}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="py-5 px-6 align-middle">
+                      <div className="text-base sm:text-lg md:text-xl text-slate-800 font-semibold leading-relaxed">
+                        {item.content}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
