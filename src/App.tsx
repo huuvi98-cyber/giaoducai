@@ -54,6 +54,9 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {/* Global Footer */}
+      <Footer onSelectTab={handleSelectTab} />
     </div>
   );
 }

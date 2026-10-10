@@ -55,43 +55,43 @@ export const Tab2Objectives: React.FC = () => {
   ];
 
   const icons = [
-    <Bot className="w-6 h-6 text-blue-600" />,
-    <Compass className="w-6 h-6 text-blue-600" />,
-    <FileCheck2 className="w-6 h-6 text-blue-600" />,
-    <Wrench className="w-6 h-6 text-blue-600" />,
-    <ShieldCheck className="w-6 h-6 text-blue-600" />,
+    <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    <FileCheck2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    <Wrench className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
   ];
 
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header Overview Card */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
+      <div className="bg-white rounded-2xl p-5 sm:p-8 border border-slate-200 shadow-xs">
         <div className="pb-4 border-b border-slate-100">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             Mục tiêu lớn nhất
           </h2>
-          <p className="mt-3 text-base sm:text-lg md:text-xl font-bold text-slate-800 leading-relaxed">
+          <p className="mt-3 text-xs sm:text-sm md:text-base font-bold text-slate-800 leading-relaxed">
             Hình thành và phát triển năng lực AI để học sinh trở thành công dân số chủ động, có khả năng:
           </p>
         </div>
 
-        {/* 5 Abilities List */}
-        <div className="mt-6 space-y-3 sm:space-y-4">
+        {/* 5 Abilities List with matching font text-xs sm:text-sm md:text-base */}
+        <div className="mt-6 space-y-3 sm:space-y-3.5">
           {abilities.map((ability, idx) => (
             <div
               key={ability.id}
-              className={`p-5 sm:p-6 rounded-xl border ${ability.borderColor} ${ability.bg} transition-colors flex items-center gap-4 sm:gap-5 shadow-xs`}
+              className={`p-4 sm:p-5 rounded-xl border ${ability.borderColor} ${ability.bg} transition-colors flex items-center gap-3 sm:gap-3.5 shadow-xs`}
             >
-              <div className="p-2.5 rounded-xl bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
+              <div className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
                 {icons[idx]}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-base sm:text-lg md:text-xl text-slate-800 font-semibold leading-relaxed">
+                <div className="text-xs sm:text-sm md:text-base text-slate-800 font-semibold leading-relaxed">
                   {ability.title}
                 </div>
               </div>
               <div
-                className={`w-8 h-8 rounded-full border ${ability.badgeBg} font-bold text-sm sm:text-base flex items-center justify-center shrink-0 shadow-xs`}
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border ${ability.badgeBg} font-bold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs`}
               >
                 {idx + 1}
               </div>

@@ -9,96 +9,145 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 
+interface PrincipleTheme {
+  bg: string;
+  borderColor: string;
+  titleColor: string;
+}
+
+const PRINCIPLE_THEMES: PrincipleTheme[] = [
+  {
+    bg: 'bg-blue-50/70 hover:bg-blue-100/60',
+    borderColor: 'border-blue-100',
+    titleColor: 'text-blue-950',
+  },
+  {
+    bg: 'bg-emerald-50/70 hover:bg-emerald-100/60',
+    borderColor: 'border-emerald-100',
+    titleColor: 'text-emerald-950',
+  },
+  {
+    bg: 'bg-amber-50/70 hover:bg-amber-100/60',
+    borderColor: 'border-amber-100',
+    titleColor: 'text-amber-950',
+  },
+  {
+    bg: 'bg-violet-50/70 hover:bg-violet-100/60',
+    borderColor: 'border-violet-100',
+    titleColor: 'text-violet-950',
+  },
+];
+
 export const Tab8Assessment: React.FC = () => {
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header section */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
-        <div className="max-w-3xl">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Đánh giá học sinh như thế nào
-          </h2>
-          <p className="text-sm text-slate-600 mt-1">
-            Nguyên tắc đánh giá vì sự tiến bộ, danh mục minh chứng phong phú và quy trình khai báo sử dụng AI minh bạch
-          </p>
-        </div>
+      <div className="pt-2 pb-1 px-1 sm:px-2">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Đánh giá học sinh như thế nào
+        </h2>
       </div>
 
-      {/* 4 Golden Principles of Assessment */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
-        <div className="mb-6">
-          <h3 className="text-lg font-bold text-slate-900">
-            Định hướng đánh giá nhân văn & công bằng
+      {/* 4 Định hướng đánh giá */}
+      <div className="bg-white rounded-2xl p-5 sm:p-8 border border-slate-200 shadow-xs">
+        <div className="pb-4 border-b border-slate-100 mb-6">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+            Nguyên tắc
           </h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {ASSESSMENT_PRINCIPLES.map((p) => (
-            <div
-              key={p.id}
-              className="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:bg-white hover:border-emerald-300 transition-all shadow-2xs"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">
+          {ASSESSMENT_PRINCIPLES.map((p, idx) => {
+            const theme = PRINCIPLE_THEMES[idx] || PRINCIPLE_THEMES[0];
+            return (
+              <div
+                key={p.id}
+                className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} transition-colors shadow-xs flex items-center gap-3 sm:gap-3.5`}
+              >
+                <div className="p-1 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs font-bold text-xs sm:text-base flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10">
                   0{p.id}
                 </div>
-                <h4 className="text-sm font-bold text-slate-900">
+                <div className={`text-xs sm:text-sm md:text-base font-bold ${theme.titleColor} leading-relaxed`}>
                   {p.title}
-                </h4>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
-      {/* Minh chứng đánh giá (12 Types of Evaluative Evidence Matrix) */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
-        <div className="mb-6">
-          <h3 className="text-lg font-bold text-slate-900">
-            12 Loại minh chứng đánh giá năng lực AI
+      {/* Minh chứng đánh giá (12 Loại minh chứng) */}
+      <div className="bg-white rounded-2xl p-5 sm:p-8 border border-slate-200 shadow-xs">
+        <div className="pb-4 border-b border-slate-100 mb-6">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+            Minh chứng đánh giá
           </h3>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {ASSESSMENT_EVIDENCES.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-medium text-slate-800 flex items-center gap-2 hover:bg-indigo-50/50 hover:border-indigo-200 transition-colors"
-            >
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>{item}</span>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {ASSESSMENT_EVIDENCES.map((item, idx) => {
+            const pastelColors = [
+              'bg-blue-50/60 border-blue-100 hover:bg-blue-100/50',
+              'bg-emerald-50/60 border-emerald-100 hover:bg-emerald-100/50',
+              'bg-amber-50/60 border-amber-100 hover:bg-amber-100/50',
+              'bg-violet-50/60 border-violet-100 hover:bg-violet-100/50',
+              'bg-rose-50/60 border-rose-100 hover:bg-rose-100/50',
+              'bg-sky-50/60 border-sky-100 hover:bg-sky-100/50',
+            ];
+            const colorClass = pastelColors[idx % pastelColors.length];
+            return (
+              <div
+                key={idx}
+                className={`p-3 sm:p-4 rounded-xl border ${colorClass} transition-colors flex items-center gap-2.5 sm:gap-3 shadow-2xs`}
+              >
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
+                <span className="text-xs sm:text-sm md:text-base font-semibold text-slate-800 leading-snug">
+                  {item}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* Khi sử dụng AI, học sinh cần khai báo */}
-      <div className="bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-md space-y-6">
-        <div>
-          <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
+      <div className="bg-white rounded-2xl p-5 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+        <div className="pb-4 border-b border-slate-100">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
             Quy định khai báo khi sử dụng AI
           </h3>
         </div>
 
         {/* 4 Mandatory Declaration Criteria Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {AI_DECLARATION_RULES.fields.map((field) => (
-            <div
-              key={field.id}
-              className="p-4 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-between"
-            >
-              <h4 className="text-sm font-bold text-white">
-                {field.label}
-              </h4>
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ml-2" />
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          {AI_DECLARATION_RULES.fields.map((field, idx) => {
+            const pastelTints = [
+              'bg-blue-50/70 border-blue-100',
+              'bg-emerald-50/70 border-emerald-100',
+              'bg-amber-50/70 border-amber-100',
+              'bg-violet-50/70 border-violet-100',
+            ];
+            const tint = pastelTints[idx % pastelTints.length];
+            return (
+              <div
+                key={field.id}
+                className={`p-3.5 sm:p-5 rounded-xl border ${tint} flex items-center justify-between gap-2.5 sm:gap-3 shadow-2xs`}
+              >
+                <h4 className="text-xs sm:text-sm md:text-base font-bold text-slate-900">
+                  {field.label}
+                </h4>
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0 ml-1" />
+              </div>
+            );
+          })}
         </div>
 
-        {/* Vital Conclusion Card */}
-        <div className="p-4 rounded-xl bg-emerald-500/20 border border-emerald-400/30 text-emerald-100 text-xs sm:text-sm font-medium flex items-start gap-3">
-          <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-          <div className="leading-relaxed">
+        {/* Vital Conclusion Card with gentle pastel background and blue-600 icon */}
+        <div className="p-3.5 sm:p-5 rounded-xl bg-blue-50/80 border border-blue-100 text-slate-800 flex items-start gap-3 sm:gap-3.5">
+          <div className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0">
+            <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
+          </div>
+          <div className="text-xs sm:text-sm md:text-base font-semibold leading-relaxed pt-0.5">
             {AI_DECLARATION_RULES.conclusion}
           </div>
         </div>

@@ -44,32 +44,32 @@ const SECTION_THEMES: Record<string, RowTheme> = {
 
 export const Tab1GeneralInfo: React.FC = () => {
   const iconMap: Record<string, React.ReactNode> = {
-    scope: <GraduationCap className="w-6 h-6 text-blue-600" />,
-    structure: <Layers className="w-6 h-6 text-blue-600" />,
-    duration: <Clock className="w-6 h-6 text-blue-600" />,
-    qualities: <Award className="w-6 h-6 text-blue-600" />,
-    assessment: <CheckCircle2 className="w-6 h-6 text-blue-600" />,
+    scope: <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    structure: <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    duration: <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    qualities: <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
+    assessment: <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />,
   };
 
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header section with context */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
+      <div className="bg-white rounded-2xl p-5 sm:p-8 border border-slate-200 shadow-xs">
         <div className="pb-4 border-b border-slate-100">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             Thông tin chung
           </h2>
         </div>
 
-        {/* Official Data Table with larger typography & gentle soft pastel section differentiation */}
+        {/* Official Data Table with comfortable body typography (text-xs sm:text-sm md:text-base) & gentle soft pastel section differentiation */}
         <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 shadow-xs">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-100/90 border-b border-slate-200 text-slate-800">
-                <th className="py-4 px-6 font-bold text-base sm:text-lg md:text-xl w-1/3 sm:w-2/5">
+                <th className="py-3.5 px-4 sm:px-6 font-bold text-xs sm:text-sm md:text-base w-1/3 sm:w-2/5">
                   Thông tin
                 </th>
-                <th className="py-4 px-6 font-bold text-base sm:text-lg md:text-xl">
+                <th className="py-3.5 px-4 sm:px-6 font-bold text-xs sm:text-sm md:text-base">
                   Nội dung
                 </th>
               </tr>
@@ -82,18 +82,18 @@ export const Tab1GeneralInfo: React.FC = () => {
                     key={item.key}
                     className={`${theme.bg} ${theme.borderColor} border-b transition-colors`}
                   >
-                    <td className="py-5 px-6 align-middle">
-                      <div className="flex items-center gap-3.5">
-                        <span className="p-2.5 rounded-xl bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
+                    <td className="py-4 px-4 sm:px-6 align-middle">
+                      <div className="flex items-center gap-2.5 sm:gap-3">
+                        <span className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
                           {iconMap[item.key]}
                         </span>
-                        <span className={`text-base sm:text-lg md:text-xl font-bold ${theme.titleColor}`}>
+                        <span className={`text-xs sm:text-sm md:text-base font-bold ${theme.titleColor}`}>
                           {item.title}
                         </span>
                       </div>
                     </td>
-                    <td className="py-5 px-6 align-middle">
-                      <div className="text-base sm:text-lg md:text-xl text-slate-800 font-semibold leading-relaxed">
+                    <td className="py-4 px-4 sm:px-6 align-middle">
+                      <div className="text-xs sm:text-sm md:text-base text-slate-800 font-semibold leading-relaxed">
                         {item.content}
                       </div>
                     </td>
@@ -107,4 +107,3 @@ export const Tab1GeneralInfo: React.FC = () => {
     </div>
   );
 };
-
