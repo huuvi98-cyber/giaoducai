@@ -96,17 +96,11 @@ export const Tab6BeyondTools: React.FC = () => {
                 className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} transition-colors shadow-xs flex items-center justify-between gap-3`}
               >
                 <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                  <span className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
-                    {getDimensionIcon(dim.id)}
-                  </span>
                   <div className={`text-xs sm:text-sm md:text-base font-bold ${theme.titleColor} leading-snug`}>
                     <span className="text-blue-700 mr-1.5">{dim.id}.</span>
                     {dim.name}
                   </div>
                 </div>
-                <span className="text-xs sm:text-sm font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-white/80 border border-slate-200 text-slate-600 shrink-0">
-                  0{dim.id}
-                </span>
               </div>
             );
           })}

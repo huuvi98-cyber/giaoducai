@@ -67,9 +67,9 @@ const TAB_STYLES = [
 export const TabNav: React.FC<TabNavProps> = ({ activeTab, onSelectTab }) => {
   return (
     <div className="sticky top-0 z-30 bg-slate-100/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs pt-3 pb-3">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-        {/* 2 rows with 4 squarish tabs in each row */}
-        <div className="grid grid-cols-4 gap-2.5 sm:gap-3.5 md:gap-4 py-1">
+      <div className="max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-6">
+        {/* 3 buttons per row on mobile, 4 buttons per row on sm breakpoint and above */}
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3.5 md:gap-4 py-1">
           {TAB_STYLES.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -82,7 +82,7 @@ export const TabNav: React.FC<TabNavProps> = ({ activeTab, onSelectTab }) => {
                     ? `0 10px 20px -2px ${tab.glowColor}, 0 4px 6px -1px rgba(0,0,0,0.15)`
                     : '0 4px 8px -1px rgba(0,0,0,0.08)',
                 }}
-                className={`relative min-h-[110px] sm:min-h-[130px] md:min-h-[148px] flex flex-col items-center justify-center p-3 sm:p-4 md:p-5 rounded-t-2xl sm:rounded-t-3xl rounded-b-none transition-all duration-200 cursor-pointer select-none group text-white ${tab.gradient} active:translate-y-1.5 ${
+                className={`relative min-h-[95px] sm:min-h-[130px] md:min-h-[148px] flex flex-col items-center justify-center p-2 sm:p-4 md:p-5 rounded-t-xl sm:rounded-t-3xl rounded-b-none transition-all duration-200 cursor-pointer select-none group text-white ${tab.gradient} active:translate-y-1.5 ${
                   isActive
                     ? 'translate-y-1 opacity-100 scale-[0.99]'
                     : 'translate-y-0 opacity-90 hover:opacity-100 hover:translate-y-0.5'

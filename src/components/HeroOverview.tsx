@@ -23,7 +23,7 @@ export const HeroOverview: React.FC<HeroOverviewProps> = () => {
       <div className="absolute bottom-1/4 left-[6%] w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa] pointer-events-none animate-particle-4" />
 
       {/* Banner Content */}
-      <div className="relative max-w-7xl mx-auto flex flex-col items-center text-center justify-center">
+      <div className="relative max-w-[1400px] mx-auto flex flex-col items-center text-center justify-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight text-center">
           <span className="block mb-1 sm:mb-2 text-blue-100/95">
             HỌC SINH PHỔ THÔNG
