@@ -292,7 +292,7 @@ const IMAGES: ImageItem[] = [
     id: 'hinh-5',
     title: 'Hình 5: Sơ đồ Mạch Giáo dục AI Phổ thông',
     filename: 'Dao tao AI -Ky 1-hinh-5.jpg',
-    caption: 'Giáo viên Trường THPT chuyên Lê Hồng Phong, Phường Chợ Quán, TPHCM hướng dẫn học sinh ứng dụng AI vào nghiên cứu khoa học. Ảnh: HOÀNG TRIỀU',
+    caption: 'Giáo viên Trường THPT chuyên Lê Hồng Phong hướng dẫn học sinh ứng dụng AI vào nghiên cứu khoa học. Ảnh: HOÀNG TRIỀU',
     srcCandidates: [
       imgHinh5,
       '/src/assets/images/Dao tao AI -Ky 1-hinh-5.jpg',
@@ -303,9 +303,7 @@ const IMAGES: ImageItem[] = [
 ];
 
 export const InfographicImageGallery: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [imageErrorMap, setImageErrorMap] = useState<Record<string, number>>({});
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const handleImageError = (imageId: string) => {
     setImageErrorMap((prev) => ({
@@ -322,98 +320,33 @@ export const InfographicImageGallery: React.FC = () => {
     return item.srcCandidates[item.srcCandidates.length - 1]; // Fallback to vector SVG Data URI
   };
 
-  const handlePrev = (e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    if (activeIndex !== null) {
-      setActiveIndex((prev) => (prev === 0 ? IMAGES.length - 1 : prev! - 1));
-    }
-  };
-
-  const handleNext = (e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    if (activeIndex !== null) {
-      setActiveIndex((prev) => (prev === IMAGES.length - 1 ? 0 : prev! + 1));
-    }
-  };
-
-  // Keyboard Navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (activeIndex === null) return;
-      if (e.key === 'ArrowLeft') {
-        setActiveIndex((prev) => (prev === 0 ? IMAGES.length - 1 : prev! - 1));
-      } else if (e.key === 'ArrowRight') {
-        setActiveIndex((prev) => (prev === IMAGES.length - 1 ? 0 : prev! + 1));
-      } else if (e.key === 'Escape') {
-        setActiveIndex(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeIndex]);
-
-  // Lock body scroll when modal is open so mouse wheel scrolling does not pull menu or page
-  useEffect(() => {
-    if (activeIndex !== null) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [activeIndex]);
-
-  // Touch Swipe Handlers for Mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX === null) return;
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX - touchEndX;
-
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) {
-        handleNext();
-      } else {
-        handlePrev();
-      }
-    }
-    setTouchStartX(null);
-  };
-
-  const activeImage = activeIndex !== null ? IMAGES[activeIndex] : null;
-
   return (
     <div className="w-full my-2">
       {/* Direct image grid - 2 columns on mobile, 4 columns on desktop */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5">
-        {IMAGES.map((item, index) => {
+        {IMAGES.map((item) => {
           const imgSrc = getCurrentImageSrc(item);
 
           return (
             <div
               key={item.id}
-              onClick={() => setActiveIndex(index)}
-              className="group cursor-pointer overflow-hidden rounded-xl sm:rounded-2xl bg-blue-950/80 border border-blue-800/80 hover:border-cyan-400 shadow-md hover:shadow-cyan-500/25 transition-all duration-300 flex flex-col h-full justify-between"
+              className="group relative z-10 hover:z-30 transition-all duration-300 ease-out transform-gpu hover:scale-110 active:scale-110 sm:hover:scale-115 sm:active:scale-115 overflow-hidden rounded-xl sm:rounded-2xl bg-blue-950/90 border border-blue-800/80 hover:border-cyan-400 shadow-md hover:shadow-2xl hover:shadow-cyan-500/40 flex flex-col h-full justify-between cursor-pointer"
             >
-              {/* Image container flush to edges with uniform aspect ratio */}
-              <div className="w-full aspect-[4/3] bg-blue-950/80 flex items-center justify-center overflow-hidden shrink-0 relative">
+              {/* Image container */}
+              <div className="w-full aspect-[4/3] bg-blue-950 flex items-center justify-center overflow-hidden shrink-0 relative">
                 <img
                   src={imgSrc}
                   alt={item.filename}
                   onError={() => handleImageError(item.id)}
-                  className="w-full h-full object-cover group-hover:scale-112 group-hover:-translate-x-3 transition-all duration-500 ease-out transform-gpu"
+                  className="w-full h-full object-cover group-hover:scale-105 active:scale-105 transition-transform duration-300 ease-out transform-gpu"
                 />
-                {/* Subtle sheen highlight effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                {/* Subtle sheen highlight effect on hover/touch */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </div>
 
               {item.caption && (
                 <div className="p-2 sm:p-3.5 bg-blue-950/95 border-t border-blue-800/70 grow flex items-center">
-                  <p className="text-[11px] sm:text-xs text-blue-100/90 italic leading-snug sm:leading-relaxed line-clamp-3">
+                  <p className="text-[11px] sm:text-xs text-blue-100/90 italic leading-snug sm:leading-relaxed">
                     {item.caption}
                   </p>
                 </div>
@@ -422,74 +355,6 @@ export const InfographicImageGallery: React.FC = () => {
           );
         })}
       </div>
-
-      {/* Full-Screen Immersive Lightbox Modal (z-[100] để đè hoàn toàn trên menu & khóa cuộn) */}
-      {activeImage && activeIndex !== null && (
-        <div
-          className="fixed inset-0 w-screen h-screen z-[100] bg-slate-950/95 backdrop-blur-2xl flex flex-col items-center justify-between p-3 sm:p-6 overflow-hidden select-none animate-fadeIn"
-          onClick={() => setActiveIndex(null)}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          {/* Top Bar: Counter Badge & Close Button */}
-          <div
-            className="w-full max-w-6xl flex items-center justify-between z-20 pb-3 border-b border-slate-800/80"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="px-3.5 py-1.5 bg-slate-900/90 text-cyan-300 text-xs sm:text-sm font-bold rounded-full backdrop-blur-md border border-slate-700/60 shadow-lg">
-              {activeIndex + 1} / {IMAGES.length}
-            </div>
-
-            <button
-              onClick={() => setActiveIndex(null)}
-              aria-label="Đóng"
-              className="p-2 sm:p-2.5 text-slate-300 hover:text-white bg-slate-900/90 hover:bg-slate-800 rounded-full backdrop-blur-md transition-colors border border-slate-700/50 shadow-lg"
-            >
-              <X className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-          </div>
-
-          {/* Left Arrow Navigation */}
-          <button
-            onClick={handlePrev}
-            aria-label="Hình trước"
-            className="fixed left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 text-white bg-slate-900/90 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-2xl group"
-          >
-            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 group-hover:-translate-x-0.5 transition-transform" />
-          </button>
-
-          {/* Right Arrow Navigation */}
-          <button
-            onClick={handleNext}
-            aria-label="Hình tiếp theo"
-            className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 text-white bg-slate-900/90 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-2xl group"
-          >
-            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-0.5 transition-transform" />
-          </button>
-
-          {/* Image Display Container - Fits neatly inside viewport without clipping */}
-          <div
-            className="flex-1 w-full max-w-6xl flex flex-col items-center justify-center my-auto overflow-hidden min-h-0 relative z-10 px-2 sm:px-8 py-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="w-full h-full flex flex-col items-center justify-center">
-              <img
-                key={activeImage.id}
-                src={getCurrentImageSrc(activeImage)}
-                alt={activeImage.filename}
-                onError={() => handleImageError(activeImage.id)}
-                className="max-w-full max-h-[68vh] sm:max-h-[72vh] w-auto h-auto object-contain rounded-xl shadow-2xl transition-all duration-300 transform scale-100 border border-slate-800/60"
-              />
-
-              {activeImage.caption && (
-                <p className="mt-3 text-xs sm:text-sm md:text-base text-blue-100/95 italic text-center max-w-3xl px-4 py-2 leading-relaxed bg-slate-900/80 rounded-xl border border-slate-800/60 backdrop-blur-sm shadow-md">
-                  {activeImage.caption}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
