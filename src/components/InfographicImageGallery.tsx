@@ -352,6 +352,18 @@ export const InfographicImageGallery: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeIndex]);
 
+  // Lock body scroll when modal is open so mouse wheel scrolling does not pull menu or page
+  useEffect(() => {
+    if (activeIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeIndex]);
+
   // Touch Swipe Handlers for Mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
@@ -411,63 +423,66 @@ export const InfographicImageGallery: React.FC = () => {
         })}
       </div>
 
-      {/* Interactive Lightbox Modal for enlarged view & slider navigation */}
+      {/* Full-Screen Immersive Lightbox Modal (Tràn màn hình & Khóa cuộn trang) */}
       {activeImage && activeIndex !== null && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-6 select-none animate-fadeIn"
+          className="fixed inset-0 w-screen h-screen z-50 bg-slate-950/95 backdrop-blur-2xl flex flex-col items-center justify-between p-2 sm:p-6 overflow-hidden select-none animate-fadeIn"
           onClick={() => setActiveIndex(null)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
+          {/* Top Bar: Counter Badge & Close Button */}
           <div
-            className="relative bg-slate-900 rounded-2xl max-w-5xl w-full max-h-[95vh] overflow-hidden flex flex-col shadow-2xl border border-slate-800"
+            className="w-full max-w-7xl flex items-center justify-between z-20 pb-2 border-b border-slate-800/60"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Top Bar: Counter & Close Button */}
-            <div className="absolute top-3 left-4 z-20 px-3 py-1 bg-slate-900/80 text-cyan-300 text-xs sm:text-sm font-bold rounded-full backdrop-blur-md border border-slate-700/60 shadow-md">
+            <div className="px-3.5 py-1.5 bg-slate-900/90 text-cyan-300 text-xs sm:text-sm font-bold rounded-full backdrop-blur-md border border-slate-700/60 shadow-lg">
               {activeIndex + 1} / {IMAGES.length}
             </div>
 
             <button
               onClick={() => setActiveIndex(null)}
               aria-label="Đóng"
-              className="absolute top-3 right-3 z-20 p-2 text-slate-300 hover:text-white bg-slate-900/80 hover:bg-slate-800 rounded-full backdrop-blur-md transition-colors border border-slate-700/50 shadow-lg"
+              className="p-2 sm:p-2.5 text-slate-300 hover:text-white bg-slate-900/90 hover:bg-slate-800 rounded-full backdrop-blur-md transition-colors border border-slate-700/50 shadow-lg"
             >
               <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
+          </div>
 
-            {/* Left Arrow Navigation */}
-            <button
-              onClick={handlePrev}
-              aria-label="Hình trước"
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 text-white bg-slate-900/80 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-xl group"
-            >
-              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 group-hover:-translate-x-0.5 transition-transform" />
-            </button>
+          {/* Left Arrow Navigation */}
+          <button
+            onClick={handlePrev}
+            aria-label="Hình trước"
+            className="fixed left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 text-white bg-slate-900/90 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-2xl group"
+          >
+            <ChevronLeft className="w-6 h-6 sm:w-9 sm:h-9 group-hover:-translate-x-0.5 transition-transform" />
+          </button>
 
-            {/* Right Arrow Navigation */}
-            <button
-              onClick={handleNext}
-              aria-label="Hình tiếp theo"
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 text-white bg-slate-900/80 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-xl group"
-            >
-              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-0.5 transition-transform" />
-            </button>
+          {/* Right Arrow Navigation */}
+          <button
+            onClick={handleNext}
+            aria-label="Hình tiếp theo"
+            className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 text-white bg-slate-900/90 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-2xl group"
+          >
+            <ChevronRight className="w-6 h-6 sm:w-9 sm:h-9 group-hover:translate-x-0.5 transition-transform" />
+          </button>
 
-            {/* Modal Image Display */}
-            <div className="flex-1 p-3 sm:p-6 bg-slate-950 flex flex-col items-center justify-center overflow-auto min-h-[300px]">
-              <div className="relative flex items-center justify-center max-w-full max-h-[72vh]">
-                <img
-                  key={activeImage.id}
-                  src={getCurrentImageSrc(activeImage)}
-                  alt={activeImage.filename}
-                  onError={() => handleImageError(activeImage.id)}
-                  className="max-w-full max-h-[72vh] object-contain rounded-xl shadow-2xl transition-all duration-300 transform scale-100"
-                />
-              </div>
+          {/* Full-Screen Image Display Container */}
+          <div
+            className="flex-1 w-full max-w-7xl flex flex-col items-center justify-center my-auto overflow-hidden min-h-0 relative z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-full h-full flex flex-col items-center justify-center p-1 sm:p-4">
+              <img
+                key={activeImage.id}
+                src={getCurrentImageSrc(activeImage)}
+                alt={activeImage.filename}
+                onError={() => handleImageError(activeImage.id)}
+                className="max-w-full max-h-[80vh] sm:max-h-[85vh] w-auto h-auto object-contain rounded-2xl shadow-2xl transition-all duration-300 transform scale-100 border border-slate-800/50"
+              />
 
               {activeImage.caption && (
-                <p className="mt-4 text-xs sm:text-sm md:text-base text-blue-100/90 italic text-center max-w-3xl px-6 leading-relaxed">
+                <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-blue-100/95 italic text-center max-w-4xl px-6 leading-relaxed bg-slate-900/70 py-2 rounded-xl border border-slate-800/50 backdrop-blur-sm">
                   {activeImage.caption}
                 </p>
               )}
