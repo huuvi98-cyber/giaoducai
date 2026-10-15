@@ -55,17 +55,17 @@ export const Tab1GeneralInfo: React.FC = () => {
     <div className="space-y-8 animate-fadeIn">
       {/* Header section with context */}
       <div className="bg-white rounded-2xl p-5 sm:p-8 border border-slate-200 shadow-xs">
-        <div className="pb-4 border-b border-slate-100">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <div className="pb-4 pt-3 px-4 rounded-xl bg-amber-100/80 border-b border-amber-200">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-amber-950 tracking-tight">
             Thông tin chung
           </h2>
         </div>
 
-        {/* Official Data Table with comfortable body typography (text-xs sm:text-sm md:text-base) & gentle soft pastel section differentiation */}
-        <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 shadow-xs">
+        {/* Official Data Table with comfortable body typography & soft light green theme */}
+        <div className="mt-6 overflow-hidden rounded-xl bg-emerald-50/80 border border-emerald-200/90 shadow-sm">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-100/90 border-b border-slate-200 text-slate-800">
+              <tr className="bg-emerald-100/90 border-b border-emerald-200 text-emerald-950">
                 <th className="py-3.5 px-4 sm:px-6 font-bold text-xs sm:text-sm md:text-base w-1/3 sm:w-2/5">
                   Thông tin
                 </th>

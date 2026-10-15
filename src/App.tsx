@@ -13,6 +13,17 @@ import { FullInfographicView } from './components/FullInfographicView';
 import { Footer } from './components/Footer';
 import { InfographicImageGallery } from './components/InfographicImageGallery';
 
+const TAB_BACKGROUND_THEMES: Record<number, string> = {
+  1: 'bg-gradient-to-br from-amber-500/30 via-orange-400/20 to-red-500/15 border-amber-300/80',
+  2: 'bg-gradient-to-br from-lime-500/30 via-emerald-400/20 to-teal-500/15 border-lime-300/80',
+  3: 'bg-gradient-to-br from-cyan-500/30 via-sky-400/20 to-blue-500/15 border-cyan-300/80',
+  4: 'bg-gradient-to-br from-pink-500/30 via-rose-400/20 to-pink-600/15 border-pink-300/80',
+  5: 'bg-gradient-to-br from-purple-500/30 via-violet-400/20 to-indigo-500/15 border-purple-300/80',
+  6: 'bg-gradient-to-br from-indigo-500/30 via-indigo-400/20 to-blue-600/15 border-indigo-300/80',
+  7: 'bg-gradient-to-br from-teal-500/30 via-emerald-400/20 to-teal-600/15 border-teal-300/80',
+  8: 'bg-gradient-to-br from-rose-500/30 via-red-400/20 to-rose-600/15 border-rose-300/80',
+};
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<number>(1);
   const [isFullView, setIsFullView] = useState<boolean>(false);
@@ -55,7 +66,7 @@ export default function App() {
       )}
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 my-4 sm:my-6 bg-gradient-to-br from-blue-500/35 via-sky-400/25 to-blue-600/20 border border-blue-300/70 rounded-3xl shadow-sm backdrop-blur-xs">
+      <main className={`flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 my-4 sm:my-6 rounded-3xl border shadow-sm backdrop-blur-xs transition-all duration-300 ${TAB_BACKGROUND_THEMES[activeTab] || TAB_BACKGROUND_THEMES[1]}`}>
         {isFullView ? (
           <FullInfographicView onBackToTabs={handleSelectTab} />
         ) : (
