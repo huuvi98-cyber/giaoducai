@@ -423,17 +423,17 @@ export const InfographicImageGallery: React.FC = () => {
         })}
       </div>
 
-      {/* Full-Screen Immersive Lightbox Modal (Tràn màn hình & Khóa cuộn trang) */}
+      {/* Full-Screen Immersive Lightbox Modal (z-[100] để đè hoàn toàn trên menu & khóa cuộn) */}
       {activeImage && activeIndex !== null && (
         <div
-          className="fixed inset-0 w-screen h-screen z-50 bg-slate-950/95 backdrop-blur-2xl flex flex-col items-center justify-between p-2 sm:p-6 overflow-hidden select-none animate-fadeIn"
+          className="fixed inset-0 w-screen h-screen z-[100] bg-slate-950/95 backdrop-blur-2xl flex flex-col items-center justify-between p-3 sm:p-6 overflow-hidden select-none animate-fadeIn"
           onClick={() => setActiveIndex(null)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           {/* Top Bar: Counter Badge & Close Button */}
           <div
-            className="w-full max-w-7xl flex items-center justify-between z-20 pb-2 border-b border-slate-800/60"
+            className="w-full max-w-6xl flex items-center justify-between z-20 pb-3 border-b border-slate-800/80"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="px-3.5 py-1.5 bg-slate-900/90 text-cyan-300 text-xs sm:text-sm font-bold rounded-full backdrop-blur-md border border-slate-700/60 shadow-lg">
@@ -455,7 +455,7 @@ export const InfographicImageGallery: React.FC = () => {
             aria-label="Hình trước"
             className="fixed left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 text-white bg-slate-900/90 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-2xl group"
           >
-            <ChevronLeft className="w-6 h-6 sm:w-9 sm:h-9 group-hover:-translate-x-0.5 transition-transform" />
+            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 group-hover:-translate-x-0.5 transition-transform" />
           </button>
 
           {/* Right Arrow Navigation */}
@@ -464,25 +464,25 @@ export const InfographicImageGallery: React.FC = () => {
             aria-label="Hình tiếp theo"
             className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 text-white bg-slate-900/90 hover:bg-cyan-600 rounded-full backdrop-blur-md transition-all hover:scale-110 border border-slate-700/60 shadow-2xl group"
           >
-            <ChevronRight className="w-6 h-6 sm:w-9 sm:h-9 group-hover:translate-x-0.5 transition-transform" />
+            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-0.5 transition-transform" />
           </button>
 
-          {/* Full-Screen Image Display Container */}
+          {/* Image Display Container - Fits neatly inside viewport without clipping */}
           <div
-            className="flex-1 w-full max-w-7xl flex flex-col items-center justify-center my-auto overflow-hidden min-h-0 relative z-10"
+            className="flex-1 w-full max-w-6xl flex flex-col items-center justify-center my-auto overflow-hidden min-h-0 relative z-10 px-2 sm:px-8 py-2"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="w-full h-full flex flex-col items-center justify-center p-1 sm:p-4">
+            <div className="w-full h-full flex flex-col items-center justify-center">
               <img
                 key={activeImage.id}
                 src={getCurrentImageSrc(activeImage)}
                 alt={activeImage.filename}
                 onError={() => handleImageError(activeImage.id)}
-                className="max-w-full max-h-[80vh] sm:max-h-[85vh] w-auto h-auto object-contain rounded-2xl shadow-2xl transition-all duration-300 transform scale-100 border border-slate-800/50"
+                className="max-w-full max-h-[68vh] sm:max-h-[72vh] w-auto h-auto object-contain rounded-xl shadow-2xl transition-all duration-300 transform scale-100 border border-slate-800/60"
               />
 
               {activeImage.caption && (
-                <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-blue-100/95 italic text-center max-w-4xl px-6 leading-relaxed bg-slate-900/70 py-2 rounded-xl border border-slate-800/50 backdrop-blur-sm">
+                <p className="mt-3 text-xs sm:text-sm md:text-base text-blue-100/95 italic text-center max-w-3xl px-4 py-2 leading-relaxed bg-slate-900/80 rounded-xl border border-slate-800/60 backdrop-blur-sm shadow-md">
                   {activeImage.caption}
                 </p>
               )}
