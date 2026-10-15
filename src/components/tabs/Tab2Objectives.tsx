@@ -80,7 +80,7 @@ export const Tab2Objectives: React.FC = () => {
           {abilities.map((ability, idx) => (
             <div
               key={ability.id}
-              className={`p-4 sm:p-5 rounded-xl border ${ability.borderColor} ${ability.bg} transition-colors flex items-center gap-3 sm:gap-3.5 shadow-xs`}
+              className={`p-4 sm:p-5 rounded-xl border ${ability.borderColor} ${ability.bg} transition-colors flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5 shadow-xs`}
             >
               <div className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
                 {icons[idx]}

@@ -121,7 +121,7 @@ export const Tab4Journey: React.FC = () => {
 
         {/* Trọng tâm năng lực */}
         <div className="p-5 sm:p-6 rounded-xl bg-blue-50/70 border border-blue-100 transition-colors">
-          <div className="flex items-center gap-2.5 sm:gap-3 mb-2.5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-3 mb-2.5">
             <span className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
               <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
             </span>
@@ -136,7 +136,7 @@ export const Tab4Journey: React.FC = () => {
 
         {/* Phương pháp chủ đạo */}
         <div className={`p-5 sm:p-6 rounded-xl ${currentTheme.bgHighlight} border ${currentTheme.borderColor} transition-colors`}>
-          <div className="flex items-center gap-2.5 sm:gap-3 mb-2.5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-3 mb-2.5">
             <span className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
               {getMethodIcon(currentLevel.id)}
             </span>

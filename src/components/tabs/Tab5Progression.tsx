@@ -86,7 +86,7 @@ export const Tab5Progression: React.FC = () => {
             return (
               <div
                 key={s.num}
-                className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} text-left relative flex items-center gap-3 sm:gap-3.5 transition-colors shadow-xs`}
+                className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} text-left relative flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5 transition-colors shadow-xs`}
               >
                 <span className="p-1 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs font-bold text-xs sm:text-base flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10">
                   {s.num}
@@ -116,7 +116,7 @@ export const Tab5Progression: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} flex items-center gap-3 sm:gap-3.5 shadow-xs transition-colors`}
+                  className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5 shadow-xs transition-colors`}
                 >
                   <div className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
                     <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />

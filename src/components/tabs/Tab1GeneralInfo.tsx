@@ -83,7 +83,7 @@ export const Tab1GeneralInfo: React.FC = () => {
                     className={`${theme.bg} ${theme.borderColor} border-b transition-colors`}
                   >
                     <td className="py-4 px-4 sm:px-6 align-middle">
-                      <div className="flex items-center gap-2.5 sm:gap-3">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-3">
                         <span className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs">
                           {iconMap[item.key]}
                         </span>

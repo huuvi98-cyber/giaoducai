@@ -62,7 +62,7 @@ export const Tab8Assessment: React.FC = () => {
             return (
               <div
                 key={p.id}
-                className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} transition-colors shadow-xs flex items-center gap-3 sm:gap-3.5`}
+                className={`p-3.5 sm:p-5 rounded-xl border ${theme.borderColor} ${theme.bg} transition-colors shadow-xs flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5`}
               >
                 <div className="p-1 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0 shadow-xs font-bold text-xs sm:text-base flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10">
                   0{p.id}
@@ -98,9 +98,9 @@ export const Tab8Assessment: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`p-3 sm:p-4 rounded-xl border ${colorClass} transition-colors flex items-center gap-2.5 sm:gap-3 shadow-2xs`}
+                className={`p-3 sm:p-4 rounded-xl border ${colorClass} transition-colors flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3 shadow-2xs`}
               >
-                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0 mt-0.5 sm:mt-0" />
                 <span className="text-xs sm:text-sm md:text-base font-semibold text-slate-800 leading-snug">
                   {item}
                 </span>
@@ -131,19 +131,19 @@ export const Tab8Assessment: React.FC = () => {
             return (
               <div
                 key={field.id}
-                className={`p-3.5 sm:p-5 rounded-xl border ${tint} flex items-center justify-between gap-2.5 sm:gap-3 shadow-2xs`}
+                className={`p-3.5 sm:p-5 rounded-xl border ${tint} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3 shadow-2xs`}
               >
                 <h4 className="text-xs sm:text-sm md:text-base font-bold text-slate-900">
                   {field.label}
                 </h4>
-                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0 ml-1" />
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
               </div>
             );
           })}
         </div>
 
         {/* Vital Conclusion Card with gentle pastel background and blue-600 icon */}
-        <div className="p-3.5 sm:p-5 rounded-xl bg-blue-50/80 border border-blue-100 text-slate-800 flex items-start gap-3 sm:gap-3.5">
+        <div className="p-3.5 sm:p-5 rounded-xl bg-blue-50/80 border border-blue-100 text-slate-800 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-3.5">
           <div className="p-1.5 sm:p-2 rounded-lg bg-blue-100 text-blue-600 border border-blue-200/70 shrink-0">
             <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
           </div>
