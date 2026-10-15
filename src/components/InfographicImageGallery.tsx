@@ -252,7 +252,7 @@ const IMAGES: ImageItem[] = [
     id: 'hinh-2-2',
     title: 'Hình 2-2: Khung Năng lực AI Phổ thông',
     filename: 'regenerated_image_1792054339436.jpg',
-    caption: 'Học sinh Trường Tiểu học Nguyễn Bỉnh Khiêm (phường Sài Gòn, TPHCM) trong tiết học môn Tự nhiên và Xã hội có ứng dụng AI. Ảnh: HOÀNG TRIỀU',
+    caption: 'Học sinh Trường Tiểu học Nguyễn Bỉnh Khiêm trong tiết học môn Tự nhiên và Xã hội có ứng dụng AI. Ảnh: HOÀNG TRIỀU',
     srcCandidates: [
       imgRegenerated,
       '/src/assets/images/regenerated_image_1792054339436.jpg',
@@ -266,7 +266,7 @@ const IMAGES: ImageItem[] = [
     id: 'hinh-3',
     title: 'Hình 3: Cấu trúc Mạch Nội dung Giáo dục AI',
     filename: 'Dao tao AI -Ky 1-hinh-3.jpg',
-    caption: 'Học sinh Trường Tiểu học Trần Hưng Đạo (Phường Cầu Ông Lãnh, TPHCM) trong tiết Toán lớp 4. Ảnh: HOÀNG TRIỀU',
+    caption: 'Học sinh Trường Tiểu học Trần Hưng Đạo trong tiết Toán lớp 4. Ảnh: HOÀNG TRIỀU',
     srcCandidates: [
       imgHinh3,
       '/src/assets/images/Dao tao AI -Ky 1-hinh-3.jpg',

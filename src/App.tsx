@@ -55,7 +55,7 @@ export default function App() {
       )}
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 my-4 sm:my-6 bg-gradient-to-br from-blue-500/35 via-sky-400/25 to-blue-600/20 border border-blue-300/70 rounded-3xl shadow-sm backdrop-blur-xs">
         {isFullView ? (
           <FullInfographicView onBackToTabs={handleSelectTab} />
         ) : (
